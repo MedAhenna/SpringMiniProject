@@ -3,11 +3,11 @@ package com.example.miniprojet.services;
 import com.example.miniprojet.entities.Produit;
 import com.example.miniprojet.exceptions.ResourceNotFoundException;
 import com.example.miniprojet.repositories.ProduitRepository;
+import com.example.miniprojet.utils.isNullOrEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProduitService implements IProduitService{
@@ -35,12 +35,21 @@ public class ProduitService implements IProduitService{
     }
 
     @Override
-    public void deleteById() {
-
+    public void deleteById(Long Id) {
+        produitRepository.deleteById(Id);
     }
 
     @Override
-    public Produit updateProduit(Long Id) {
-        return null;
+    public Produit updateProduct(Produit produit, Long Id) {
+        Produit existProduct = produitRepository.findById(Id).orElseThrow(
+                ()-> new ResourceNotFoundException("Product","Id",Id)
+        );
+        existProduct.setNom(isNullOrEmpty.check(produit.getNom()) ? produit.getNom() : existProduct.getNom());
+        existProduct.setDescription(isNullOrEmpty.check(produit.getDescription()) ? produit.getDescription() : existProduct.getDescription());
+        existProduct.setMin_order(isNullOrEmpty.check(produit.getMin_order()) ? produit.getMin_order() : existProduct.getMin_order());
+        existProduct.setQty_dispo(isNullOrEmpty.check(produit.getQty_dispo()) ? produit.getQty_dispo() : existProduct.getQty_dispo());
+
+        produitRepository.save(existProduct);
+        return existProduct;
     }
 }

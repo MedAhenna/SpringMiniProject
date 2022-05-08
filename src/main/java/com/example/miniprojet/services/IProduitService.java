@@ -9,6 +9,6 @@ public interface IProduitService {
     public List<Produit> findAll();
     public Produit findById(Long Id);
     public Produit save(Produit produit);
-    public void deleteById();
-    public Produit updateProduit(Long Id);
+    void deleteById(Long Id);
+    public Produit updateProduct(Produit produit,Long Id);
 }

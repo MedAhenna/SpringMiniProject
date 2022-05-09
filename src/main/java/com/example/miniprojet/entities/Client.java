@@ -15,7 +15,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Client {
+public class Client extends Utilisateur{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,7 +1,8 @@
-package com.example.miniprojet.services;
+package com.example.miniprojet.services.implementations;
 
 import com.example.miniprojet.entities.Client;
 import com.example.miniprojet.repositories.ClientRepository;
+import com.example.miniprojet.services.interfaces.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,3 +20,12 @@ public class ClientService implements IClientService {
         return clientRepository.save(client);
     }
 }
+
+
+
+
+
+
+
+
+

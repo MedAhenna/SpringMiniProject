@@ -24,6 +24,7 @@ public class Produit {
     private String description;
     private Integer qty_dispo;
     private Integer min_order;
+
     @ManyToOne
     @JsonIgnore
     private Categorie category;

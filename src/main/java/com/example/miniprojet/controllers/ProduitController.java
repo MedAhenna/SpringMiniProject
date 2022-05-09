@@ -1,18 +1,18 @@
 package com.example.miniprojet.controllers;
 
 import com.example.miniprojet.entities.Produit;
+import com.example.miniprojet.services.interfaces.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.Path;
 import java.util.List;
-import com.example.miniprojet.services.ProduitService;
+import com.example.miniprojet.services.implementations.ProduitService;
 
 @RestController
 @RequestMapping("/produit")
 public class ProduitController {
 
-    private final ProduitService produitService;
+    private final IProduitService produitService;
 
     @Autowired
     public ProduitController(ProduitService produitService){

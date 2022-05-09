@@ -1,8 +1,10 @@
-package com.example.miniprojet.services;
+package com.example.miniprojet.services.implementations;
 
 import com.example.miniprojet.entities.Produit;
 import com.example.miniprojet.exceptions.ResourceNotFoundException;
+import com.example.miniprojet.repositories.CategorieRepository;
 import com.example.miniprojet.repositories.ProduitRepository;
+import com.example.miniprojet.services.interfaces.IProduitService;
 import com.example.miniprojet.utils.isNullOrEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,13 +12,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProduitService implements IProduitService{
+public class ProduitService implements IProduitService {
 
     ProduitRepository produitRepository;
+    CategorieRepository categorieRepository;
 
     @Autowired
-    public  ProduitService(ProduitRepository produitRepository){
+    public  ProduitService(ProduitRepository produitRepository, CategorieRepository categorieRepository){
         this.produitRepository = produitRepository;
+        this.categorieRepository = categorieRepository;
     }
 
     @Override
@@ -36,6 +40,7 @@ public class ProduitService implements IProduitService{
 
     @Override
     public void deleteById(Long Id) {
+        produitRepository.findById(Id).orElseThrow(()-> new ResourceNotFoundException("Produit","Id",Id));
         produitRepository.deleteById(Id);
     }
 

@@ -10,4 +10,5 @@ public interface IProduitService {
     Produit save(Produit produit);
     void deleteById(Long Id);
     Produit updateProduct(Produit produit, Long Id);
+    Produit updateProductCat(Long productId, Long categorieId);
 }

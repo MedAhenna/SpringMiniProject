@@ -1,5 +1,6 @@
 package com.example.miniprojet.controllers;
 
+import com.example.miniprojet.dto.ProduitCategorieDTO;
 import com.example.miniprojet.entities.Produit;
 import com.example.miniprojet.services.interfaces.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +45,12 @@ public class ProduitController {
     public Produit updateProduct(@PathVariable Long id, @RequestBody Produit produit){
         return  produitService.updateProduct(produit, id);
     }
+
+    @PostMapping("/productcat")
+    public Produit productCat(@RequestBody ProduitCategorieDTO productDto) {
+        System.out.println(productDto.getProductId());
+        System.out.println(productDto.getCategoryId());
+        return produitService.updateProductCat(productDto.getProductId(),productDto.getCategoryId());
+    }
 }
+

@@ -1,6 +1,7 @@
 package com.example.miniprojet.controllers;
 
 import com.example.miniprojet.entities.SecteurActivite;
+import com.example.miniprojet.services.interfaces.ISecteurActiviteService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

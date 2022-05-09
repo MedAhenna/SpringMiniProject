@@ -2,6 +2,7 @@ package com.example.miniprojet.controllers;
 
 import com.example.miniprojet.entities.Cooperative;
 import com.example.miniprojet.entities.Produit;
+import com.example.miniprojet.services.interfaces.ICooperativeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,11 +20,6 @@ public class CooperativeController {
     @GetMapping({"","/"})
     public List<Cooperative> getCooperatives(){
         return cooperativeService.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public Cooperative getCooperative(@PathVariable Long id){
-        return cooperativeService.findById(id);
     }
 
     @GetMapping("/{id}")

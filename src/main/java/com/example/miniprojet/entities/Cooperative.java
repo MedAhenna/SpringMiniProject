@@ -20,7 +20,7 @@ public class Cooperative {
     private Long id;
 
     private String nom;
-    private String address;
+    private String adresse;
     private Integer telephone;
     private String status;
 
@@ -33,9 +33,9 @@ public class Cooperative {
     @JsonIgnore
     private Region region;
 
-    public Cooperative(String nom, String address, Integer telephone, String status) {
+    public Cooperative(String nom, String adresse, Integer telephone, String status) {
         this.nom = nom;
-        this.address = address;
+        this.adresse = adresse;
         this.telephone = telephone;
         this.status = status;
     }

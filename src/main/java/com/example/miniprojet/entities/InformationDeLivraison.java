@@ -20,15 +20,15 @@ public class InformationDeLivraison {
 
     private String nom;
     private String prenom;
-    private String address;
+    private String adresse;
     private Integer telephone;
 
 
 
-    public InformationDeLivraison(String nom, String prenom, String address, Integer telephone) {
+    public InformationDeLivraison(String nom, String prenom, String adresse, Integer telephone) {
         this.nom = nom;
         this.prenom = prenom;
-        this.address = address;
+        this.adresse = adresse;
         this.telephone = telephone;
     }
 }

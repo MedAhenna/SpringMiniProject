@@ -4,6 +4,7 @@ package com.example.miniprojet.controllers;
 import com.example.miniprojet.entities.Categorie;
 import com.example.miniprojet.entities.Region;
 import com.example.miniprojet.services.interfaces.ICategorieService;
+import com.example.miniprojet.services.interfaces.IRegionService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

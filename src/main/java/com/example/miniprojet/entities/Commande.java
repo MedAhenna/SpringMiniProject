@@ -20,12 +20,14 @@ public class Commande {
     private Long Id;
     private Date DateCreated;
     private Integer Qty;
-    private String status;
 
     @ManyToOne
     @JsonIgnore
     private Produit product;
 
+    @ManyToOne
+    @JsonIgnore
+    private Status status;
     @ManyToOne
     @JsonIgnore
     private Client client;

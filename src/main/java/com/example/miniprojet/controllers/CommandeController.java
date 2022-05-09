@@ -23,7 +23,7 @@ public class CommandeController {
     public Commande createCommande(@RequestBody Commande commande){
         Date datenow = new Date();
         datenow.getTime();
-        commande.setDateCreated();
+        commande.setDateCreated(datenow);
         return commandeService.saveCommande(commande);
     }
 }

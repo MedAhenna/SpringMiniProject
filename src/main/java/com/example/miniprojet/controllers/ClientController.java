@@ -2,16 +2,17 @@ package com.example.miniprojet.controllers;
 
 import com.example.miniprojet.entities.Client;
 import com.example.miniprojet.services.implementations.ClientService;
+import com.example.miniprojet.services.interfaces.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Register")
 public class ClientController {
-    private final ClientService clientService;
+    private final IClientService clientService;
 
     @Autowired
-    public ClientController(ClientService clientService) {
+    public ClientController(IClientService clientService) {
         this.clientService = clientService;
     }
 

@@ -36,7 +36,7 @@ public class UtilisateurController {
 
     @PostMapping("/role/addtouser")
     Utilisateur addRoleToUser(@RequestBody UserRoleDTO userRolDto){
-        return utilisateurService.addRoleToUser(userRolDto.getUsername(), userRolDto.getRoleName());
+        return utilisateurService.addRoleToUser(userRolDto.getUserId(), userRolDto.getRoleId());
     }
 
     @PostMapping("/admin/save")

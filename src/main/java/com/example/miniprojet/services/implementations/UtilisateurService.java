@@ -5,7 +5,6 @@ import com.example.miniprojet.entities.Utilisateur;
 import com.example.miniprojet.exceptions.ResourceNotFoundException;
 import com.example.miniprojet.repositories.RoleRepository;
 import com.example.miniprojet.repositories.UtilisateurRepository;
-import com.example.miniprojet.services.interfaces.IProduitService;
 import com.example.miniprojet.services.interfaces.IUtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +17,7 @@ public class UtilisateurService implements IUtilisateurService {
 
     UtilisateurRepository utilisateurRepository;
     RoleRepository roleRepository;
+
 
     @Autowired
     public UtilisateurService(UtilisateurRepository utilisateurRepository,
@@ -35,9 +35,16 @@ public class UtilisateurService implements IUtilisateurService {
     public Role saveRole(Role role){return roleRepository.save(role);}
 
     @Override
-    public Utilisateur addRoleToUser(String username, String roleName){
-        Utilisateur user = utilisateurRepository.findByUsername(username);
-        Role role = roleRepository.findByNom(roleName);
+    public Role getRole(Long Id){
+        return roleRepository.findById(Id).orElseThrow(
+                ()-> new ResourceNotFoundException("Role","Id",Id)
+        );
+    }
+
+    @Override
+    public Utilisateur addRoleToUser(Long userId, Long roleId){
+        Utilisateur user = this.findById(userId);
+        Role role = this.getRole(roleId);
         user.setRole(role);
         return utilisateurRepository.save(user);
     }

@@ -8,7 +8,8 @@ import java.util.List;
 public interface IUtilisateurService {
     Utilisateur saveUser(Utilisateur user);
     Role saveRole(Role role);
-    Utilisateur addRoleToUser(String username, String roleName);
+    Role getRole(Long Id);
+    Utilisateur addRoleToUser(Long userId, Long roleId);
     List<Utilisateur> findAll();
     Utilisateur findById(Long Id);
     void deleteById(Long Id);

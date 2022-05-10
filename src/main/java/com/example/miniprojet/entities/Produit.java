@@ -31,15 +31,16 @@ public class Produit {
     @ManyToOne(fetch = FetchType.EAGER)
     private Categorie category;
 
+
     @ManyToOne
     @JsonIgnore
-    private MatierePremiere matierePremiere;
+    private Cooperative cooperative;
 
-
-
+    @OneToMany
+    List <Commande> commandeList = new ArrayList<Commande>();
 
     @ManyToMany
-    List<MatierePremiere> matierePremiereList=new ArrayList<MatierePremiere>();
+    List<MatierePremiere> matierePremiereList = new ArrayList<MatierePremiere>();
 
 
 

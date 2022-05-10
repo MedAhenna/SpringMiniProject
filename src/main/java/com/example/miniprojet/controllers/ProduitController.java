@@ -26,12 +26,12 @@ public class ProduitController {
 
     @GetMapping("/coopertaive/{id}/products")
     public List<Produit> getProductsByCooperative(@PathVariable Long id){
-        return produitService.findByCooperative_Id(id);
+        return null;
     }
 
     @GetMapping("/categorie/{id}/products")
     public List<Produit> getProductsByCategorie(@PathVariable Long id){
-        return produitService.findByCategorie_Id(id);
+        return null;
     }
 
     @GetMapping("/product/{id}")

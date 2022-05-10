@@ -46,16 +46,6 @@ public class ProduitService implements IProduitService {
     }
 
     @Override
-    public List<Produit> findByCooperative_Id(Long Id) {
-        return produitRepository.findAllByCooperativeID(Id);
-    }
-
-    @Override
-    public List<Produit> findByCategorie_Id(Long Id) {
-        return produitRepository.findAllByCategorieID(Id);
-    }
-
-    @Override
     public Produit save(Produit produit) {
 
         if(!isNullOrEmpty.check(produit.getCategorieID())){

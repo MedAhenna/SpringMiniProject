@@ -1,9 +1,7 @@
 package com.example.miniprojet.controllers;
 
 import com.example.miniprojet.dto.CommandeStatusDTO;
-import com.example.miniprojet.dto.ProduitCategorieDTO;
 import com.example.miniprojet.entities.Commande;
-import com.example.miniprojet.entities.Produit;
 import com.example.miniprojet.services.interfaces.ICommandeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

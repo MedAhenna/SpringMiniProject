@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/Cooperative")
+@RequestMapping("/cooperative")
 public class CooperativeController {
     private final ICooperativeService cooperativeService;
 

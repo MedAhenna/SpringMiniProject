@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -24,6 +26,9 @@ public class Cooperative extends Utilisateur{
     private Integer telephone;
     private String status;
 
+
+    @OneToMany
+    List<Produit> produitList = new ArrayList<Produit>();
 
     @ManyToOne
     @JsonIgnore

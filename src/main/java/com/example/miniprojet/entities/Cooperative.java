@@ -25,6 +25,7 @@ public class Cooperative extends Utilisateur{
     private String status;
 
 
+
     @ManyToOne
     @JsonIgnore
     private SecteurActivite secteurActivite;

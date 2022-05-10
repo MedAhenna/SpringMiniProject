@@ -28,12 +28,16 @@ public class Produit {
     private Integer qty_dispo;
     private Integer min_order;
 
+    @Transient
+    private Long categorieID;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private Categorie category;
 
+    @Transient
+    private Long cooperativeID;
 
     @ManyToOne
-    @JsonIgnore
     private Cooperative cooperative;
 
     @OneToMany

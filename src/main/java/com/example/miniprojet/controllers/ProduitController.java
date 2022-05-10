@@ -38,6 +38,7 @@ public class ProduitController {
 
     @PostMapping({"","/"})
     public Produit createProduct(@RequestBody Produit produit){
+
         return produitService.save(produit);
     }
 

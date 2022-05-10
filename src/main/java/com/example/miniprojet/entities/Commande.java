@@ -21,19 +21,26 @@ public class Commande {
     private Date DateCreated;
     private Integer Qty;
 
-    @ManyToOne
-    @JsonIgnore
-    private Produit product;
+    @Transient
+    private Long produitID;
 
     @ManyToOne
-    @JsonIgnore
-    private Status status;
+    private Produit produit;
+
+    @Transient
+    private Long statusID;
+
     @ManyToOne
-    @JsonIgnore
+    private Status status = new Status(1L,"pending");
+
+
+    @Transient
+    private Long clientID;
+
+    @ManyToOne
     private Client client;
 
     @OneToOne
-    @JsonIgnore
     private InformationDeLivraison informations;
     public Commande(Date dateCreated, Integer qty) {
         DateCreated = dateCreated;

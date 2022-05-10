@@ -1,11 +1,13 @@
 package com.example.miniprojet.services.implementations;
 
 import com.example.miniprojet.entities.Categorie;
+import com.example.miniprojet.entities.Cooperative;
 import com.example.miniprojet.entities.Produit;
 import com.example.miniprojet.exceptions.ResourceNotFoundException;
 import com.example.miniprojet.repositories.CategorieRepository;
 import com.example.miniprojet.repositories.ProduitRepository;
 import com.example.miniprojet.services.interfaces.ICategorieService;
+import com.example.miniprojet.services.interfaces.ICooperativeService;
 import com.example.miniprojet.services.interfaces.IProduitService;
 import com.example.miniprojet.utils.isNullOrEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +22,17 @@ public class ProduitService implements IProduitService {
     CategorieRepository categorieRepository;
     IProduitService produitService;
     ICategorieService categorieService;
+    ICooperativeService cooperativeService;
 
     @Autowired
     public  ProduitService(ProduitRepository produitRepository,
                            CategorieRepository categorieRepository,
-                           ICategorieService categorieService){
+                           ICategorieService categorieService,
+                           CooperativeService cooperativeService){
         this.produitRepository = produitRepository;
         this.categorieRepository = categorieRepository;
         this.categorieService = categorieService;
+        this.cooperativeService = cooperativeService;
     }
 
     @Override
@@ -42,6 +47,19 @@ public class ProduitService implements IProduitService {
 
     @Override
     public Produit save(Produit produit) {
+
+        if(!isNullOrEmpty.check(produit.getCategorieID())){
+            Categorie category = categorieService.findById(produit.getCategorieID());
+            produit.setCategory(category);
+        }
+
+
+        if(!isNullOrEmpty.check(produit.getCooperativeID())){
+            Cooperative cooperative = cooperativeService.findById(produit.getCooperativeID());
+            produit.setCooperative(cooperative);
+        }
+
+
         return produitRepository.save(produit);
     }
 

@@ -1,12 +1,10 @@
 package com.example.miniprojet.services.implementations;
 
-import com.example.miniprojet.entities.Categorie;
-import com.example.miniprojet.entities.Commande;
-import com.example.miniprojet.entities.Produit;
-import com.example.miniprojet.entities.Status;
+
+import com.example.miniprojet.entities.*;
 import com.example.miniprojet.exceptions.ResourceNotFoundException;
 import com.example.miniprojet.repositories.CommandeRepository;
-import com.example.miniprojet.services.interfaces.ICommandeService;
+import com.example.miniprojet.services.interfaces.*;
 import com.example.miniprojet.utils.isNullOrEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +15,34 @@ import java.util.List;
 public class CommandeService implements ICommandeService {
 
     CommandeRepository commandeRepository;
-    StatusService statusService;
+    IUtilisateurService utilisateurService;
+    IStatusService statusService;
+    IProduitService produitService;
+
     @Autowired
-    public CommandeService(CommandeRepository commandeRepository,StatusService statusService) {
+    public CommandeService(CommandeRepository commandeRepository,
+                           IUtilisateurService utilisateurService,
+                           IStatusService statusService,
+                           IProduitService produitService) {
         this.commandeRepository = commandeRepository;
+        this.utilisateurService = utilisateurService;
         this.statusService = statusService;
+        this.produitService = produitService;
+
     }
+
+
+
 
     @Override
     public Commande saveCommande(Commande commande) {
+        Client client = (Client) utilisateurService.findById(commande.getClientID());
+        System.out.println(client.getClass());
+        commande.setClient(client);
+
+        Produit produit = produitService.findById(commande.getProduitID());
+        commande.setProduit(produit);
+
         return commandeRepository.save(commande);
     }
 

@@ -11,4 +11,6 @@ public interface ICommandeService {
     Commande findById(Long Id);
     void deleteById(Long Id);
     Commande updateCommandeStatus(Commande commande, Long Id);
+    Commande UpdateCommandeStatus(Long commandeId, Long statusId);
+
 }

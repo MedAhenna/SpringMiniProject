@@ -1,5 +1,6 @@
 package com.example.miniprojet.services.implementations;
 
+
 import com.example.miniprojet.entities.*;
 import com.example.miniprojet.exceptions.ResourceNotFoundException;
 import com.example.miniprojet.repositories.CommandeRepository;
@@ -27,6 +28,7 @@ public class CommandeService implements ICommandeService {
         this.utilisateurService = utilisateurService;
         this.statusService = statusService;
         this.produitService = produitService;
+
     }
 
 
@@ -69,6 +71,14 @@ public class CommandeService implements ICommandeService {
 
         commandeRepository.save(existCommande);
         return existCommande;
+    }
+
+    @Override
+    public Commande UpdateCommandeStatus(Long commandeId, Long statusId) {
+        Commande commande = this.findById(commandeId);
+        Status status = statusService.findById(statusId);
+        commande.setStatus(status);
+        return commandeRepository.save(commande);
     }
 
 }

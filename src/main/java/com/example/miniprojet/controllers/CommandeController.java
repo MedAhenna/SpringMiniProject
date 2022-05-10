@@ -1,6 +1,9 @@
 package com.example.miniprojet.controllers;
 
+import com.example.miniprojet.dto.CommandeStatusDTO;
+import com.example.miniprojet.dto.ProduitCategorieDTO;
 import com.example.miniprojet.entities.Commande;
+import com.example.miniprojet.entities.Produit;
 import com.example.miniprojet.services.interfaces.ICommandeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,4 +48,11 @@ public class CommandeController {
     public Commande updateCommande(@PathVariable Long id, @RequestBody Commande commande){
         return  commandeService.updateCommandeStatus(commande, id);
     }
+    @PostMapping("/commandestatus")
+    public Commande commandestatus(@RequestBody CommandeStatusDTO CommandeDto) {
+        System.out.println(CommandeDto.getCommandeId());
+        System.out.println(CommandeDto.getStatusId());
+        return commandeService.UpdateCommandeStatus(CommandeDto.getCommandeId(),CommandeDto.getStatusId());
+    }
+
 }

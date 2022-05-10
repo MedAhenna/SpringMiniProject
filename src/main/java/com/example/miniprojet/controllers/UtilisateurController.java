@@ -1,9 +1,7 @@
 package com.example.miniprojet.controllers;
 
-import com.example.miniprojet.entities.Administrateur;
-import com.example.miniprojet.entities.Client;
-import com.example.miniprojet.entities.Cooperative;
-import com.example.miniprojet.entities.Utilisateur;
+import com.example.miniprojet.dto.UserRoleDTO;
+import com.example.miniprojet.entities.*;
 import com.example.miniprojet.services.interfaces.IUtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api")
 public class UtilisateurController {
 
     private final IUtilisateurService utilisateurService;
@@ -21,29 +19,39 @@ public class UtilisateurController {
         this.utilisateurService = utilisateurService;
     }
 
-    @GetMapping("all")
+    @GetMapping("/users")
     List<Utilisateur> getUsers(){
         return utilisateurService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/user/{id}")
     Utilisateur getUser(@PathVariable Long id){
         return utilisateurService.findById(id);
     }
 
-    @PostMapping("/admin")
+    @PostMapping("/role/save")
+    Role saveRole(@RequestBody Role role){
+        return utilisateurService.saveRole(role);
+    }
+
+    @PostMapping("/role/addtouser")
+    Utilisateur addRoleToUser(@RequestBody UserRoleDTO userRolDto){
+        return utilisateurService.addRoleToUser(userRolDto.getUserId(), userRolDto.getRoleId());
+    }
+
+    @PostMapping("/admin/save")
     Utilisateur addAdmin(@RequestBody Administrateur admin){
-        return utilisateurService.save(admin);
+        return utilisateurService.saveUser(admin);
     }
 
-    @PostMapping("/client")
+    @PostMapping("/client/save")
     Utilisateur addClient(@RequestBody Client client){
-        return utilisateurService.save(client);
+        return utilisateurService.saveUser(client);
     }
 
-    @PostMapping("/cooperative")
+    @PostMapping("/cooperative/save")
     Utilisateur addCooperative(@RequestBody Cooperative cooperative){
-        return utilisateurService.save(cooperative);
+        return utilisateurService.saveUser(cooperative);
     }
 
 }

@@ -24,6 +24,9 @@ public class Utilisateur {
 
     @NotNull()
     private String password;
-    private String role;
+    private String username;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Role role;
 
 }

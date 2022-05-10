@@ -8,6 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -27,6 +30,20 @@ public class Produit {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Categorie category;
+
+
+    @ManyToOne
+    @JsonIgnore
+    private Cooperative cooperative;
+
+    @OneToMany
+    List <Commande> commandeList = new ArrayList<Commande>();
+
+    @ManyToMany
+    List<MatierePremiere> matierePremiereList = new ArrayList<MatierePremiere>();
+
+
+
 
     public Produit(String nom, float prix, String description, Integer qty_Dispo, Integer min_order) {
         this.nom = nom;

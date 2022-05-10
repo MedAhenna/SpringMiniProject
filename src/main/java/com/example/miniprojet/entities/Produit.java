@@ -31,13 +31,13 @@ public class Produit {
     @Transient
     private Long categorieID;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categorie category;
 
     @Transient
     private Long cooperativeID;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cooperative cooperative;
 
     @OneToMany
@@ -46,9 +46,6 @@ public class Produit {
     @ManyToMany
     List<MatierePremiere> matierePremiereList = new ArrayList<MatierePremiere>();
 
-
-
-
     public Produit(String nom, float prix, String description, Integer qty_Dispo, Integer min_order) {
         this.nom = nom;
         this.prix = prix;
@@ -56,5 +53,4 @@ public class Produit {
         this.qty_dispo = qty_Dispo;
         this.min_order = min_order;
     }
-
 }

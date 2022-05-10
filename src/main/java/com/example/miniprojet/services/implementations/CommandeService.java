@@ -1,7 +1,9 @@
 package com.example.miniprojet.services.implementations;
 
+import com.example.miniprojet.entities.Categorie;
 import com.example.miniprojet.entities.Commande;
 import com.example.miniprojet.entities.Produit;
+import com.example.miniprojet.entities.Status;
 import com.example.miniprojet.exceptions.ResourceNotFoundException;
 import com.example.miniprojet.repositories.CommandeRepository;
 import com.example.miniprojet.services.interfaces.ICommandeService;
@@ -15,9 +17,11 @@ import java.util.List;
 public class CommandeService implements ICommandeService {
 
     CommandeRepository commandeRepository;
+    StatusService statusService;
     @Autowired
-    public CommandeService(CommandeRepository commandeRepository) {
+    public CommandeService(CommandeRepository commandeRepository,StatusService statusService) {
         this.commandeRepository = commandeRepository;
+        this.statusService = statusService;
     }
 
     @Override
@@ -50,6 +54,14 @@ public class CommandeService implements ICommandeService {
 
         commandeRepository.save(existCommande);
         return existCommande;
+    }
+
+    @Override
+    public Commande UpdateCommandeStatus(Long commandeId, Long statusId) {
+        Commande commande = this.findById(commandeId);
+        Status status = statusService.findById(statusId);
+        commande.setStatus(status);
+        return commandeRepository.save(commande);
     }
 
 }

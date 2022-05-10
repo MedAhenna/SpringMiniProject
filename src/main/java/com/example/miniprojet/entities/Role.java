@@ -1,10 +1,8 @@
 package com.example.miniprojet.entities;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -12,18 +10,12 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class Utilisateur {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String email;
-    private String password;
-    private String username;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Role role;
-
+    @Enumerated(EnumType.STRING)
+    private RoleName roleNom;
 }

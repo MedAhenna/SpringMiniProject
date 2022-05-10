@@ -1,13 +1,14 @@
 package com.example.miniprojet.services.implementations;
 
+import com.example.miniprojet.entities.Categorie;
 import com.example.miniprojet.entities.Produit;
 import com.example.miniprojet.exceptions.ResourceNotFoundException;
 import com.example.miniprojet.repositories.CategorieRepository;
 import com.example.miniprojet.repositories.ProduitRepository;
+import com.example.miniprojet.services.interfaces.ICategorieService;
 import com.example.miniprojet.services.interfaces.IProduitService;
 import com.example.miniprojet.utils.isNullOrEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,11 +18,16 @@ public class ProduitService implements IProduitService {
 
     ProduitRepository produitRepository;
     CategorieRepository categorieRepository;
+    IProduitService produitService;
+    ICategorieService categorieService;
 
     @Autowired
-    public  ProduitService(ProduitRepository produitRepository, CategorieRepository categorieRepository){
+    public  ProduitService(ProduitRepository produitRepository,
+                           CategorieRepository categorieRepository,
+                           ICategorieService categorieService){
         this.produitRepository = produitRepository;
         this.categorieRepository = categorieRepository;
+        this.categorieService = categorieService;
     }
 
     @Override
@@ -57,5 +63,13 @@ public class ProduitService implements IProduitService {
 
         produitRepository.save(existProduct);
         return existProduct;
+    }
+
+    @Override
+    public Produit updateProductCat(Long productId, Long categorieId) {
+        Produit product = this.findById(productId);
+        Categorie category = categorieService.findById(categorieId);
+        product.setCategory(category);
+        return produitRepository.save(product);
     }
 }

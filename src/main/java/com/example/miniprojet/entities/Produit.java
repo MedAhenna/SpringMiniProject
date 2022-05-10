@@ -28,8 +28,7 @@ public class Produit {
     private Integer qty_dispo;
     private Integer min_order;
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     private Categorie category;
 
     @ManyToOne

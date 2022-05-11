@@ -7,12 +7,17 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final String[] PUBLIC_ENDPOINTS = {
+            "/api/client/save",
+            "api/cooperative/save"
+    };
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/status").permitAll()
+                .antMatchers(PUBLIC_ENDPOINTS).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

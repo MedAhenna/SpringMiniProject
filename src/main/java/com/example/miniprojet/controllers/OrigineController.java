@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/origine")
+@RequestMapping("/api")
 public class OrigineController {
 
     private final IOrigineService origineService;
@@ -16,22 +16,22 @@ public class OrigineController {
         this.origineService = origineService;
     }
 
-    @GetMapping({"","/"})
+    @GetMapping("/origines")
     public List<Origine> getOrigines(){
         return origineService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/origine/{id}")
     public Origine getOrigine(@PathVariable Long id){
         return origineService.findById(id);
     }
 
-    @PostMapping({"","/"})
+    @PostMapping("/origine/save")
     public Origine addOrigine(@RequestBody Origine origine){
         return origineService.save(origine);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/origine/{id}")
     public void deleteOrigine(@PathVariable Long id){
         origineService.deleteById(id);
     }

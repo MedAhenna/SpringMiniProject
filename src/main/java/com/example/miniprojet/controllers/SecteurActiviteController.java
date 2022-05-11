@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/secteurActivite")
+@RequestMapping("/api")
 public class SecteurActiviteController {
     private final ISecteurActiviteService secteurActiviteService;
 
@@ -16,22 +16,22 @@ public class SecteurActiviteController {
         this.secteurActiviteService = secteurActiviteService;
     }
 
-    @GetMapping({"","/"})
+    @GetMapping("/secteuractivites")
     public List<SecteurActivite> getSecteurActivites(){
         return secteurActiviteService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/secteuractivites/{id}")
     public SecteurActivite getSecteurActivite(@PathVariable Long id){
         return secteurActiviteService.findById(id);
     }
 
-    @PostMapping({"","/"})
+    @PostMapping("/secteuractivites/save")
     public SecteurActivite addSecteurActivite(@RequestBody SecteurActivite secteurActivite){
         return secteurActiviteService.save(secteurActivite);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/secteuractivites/{id}")
     public void deleteSecteurActivite(@PathVariable Long id){
         secteurActiviteService.deleteById(id);
     }

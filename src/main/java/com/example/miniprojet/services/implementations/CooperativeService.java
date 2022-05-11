@@ -14,7 +14,6 @@ import java.util.List;
 public class CooperativeService implements ICooperativeService {
     CooperativeRepository cooperativeRepository;
 
-
     @Autowired
     public  CooperativeService(CooperativeRepository cooperativeRepository){
         this.cooperativeRepository = cooperativeRepository;

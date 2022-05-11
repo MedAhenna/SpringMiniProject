@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/region")
+@RequestMapping("/api")
 public class RegionController {
 
     private final IRegionService regionService;
@@ -19,22 +19,22 @@ public class RegionController {
         this.regionService = regionService;
     }
 
-    @GetMapping({"","/"})
+    @GetMapping("/regions")
     public List<Region> getRegions(){
         return regionService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/region/{id}")
     public Region getRegion(@PathVariable Long id){
         return regionService.findById(id);
     }
 
-    @PostMapping({"","/"})
+    @PostMapping("/region/save")
     public Region addRegion(@RequestBody Region region){
         return regionService.save(region);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/region/{id}")
     public void deleteRegion(@PathVariable Long id){
         regionService.deleteById(id);
     }

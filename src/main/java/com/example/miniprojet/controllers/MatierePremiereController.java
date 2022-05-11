@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/matierePremiere")
+@RequestMapping("/api")
 public class MatierePremiereController {
 
     private final IMatierePremiereService matierePremiereService;
@@ -17,22 +17,22 @@ public class MatierePremiereController {
         this.matierePremiereService = matierePremiereService;
     }
 
-    @GetMapping({"","/"})
+    @GetMapping("matpremiers")
     public List<MatierePremiere> getMatierePremieres(){
         return matierePremiereService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/matpremier/{id}")
     public MatierePremiere getMatierePremiere(@PathVariable Long id){
         return matierePremiereService.findById(id);
     }
 
-    @PostMapping({"","/"})
+    @PostMapping("/matpremier/save")
     public MatierePremiere addMatierePremiere(@RequestBody MatierePremiere matierePremiere){
         return matierePremiereService.save(matierePremiere);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/matpremier/{id}")
     public void deleteMatierePremiere(@PathVariable Long id){
         matierePremiereService.deleteById(id);
     }

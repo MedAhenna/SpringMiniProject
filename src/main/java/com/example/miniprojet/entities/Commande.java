@@ -33,7 +33,6 @@ public class Commande {
     @ManyToOne
     private Status status = new Status(1L,"pending");
 
-
     @Transient
     private Long clientID;
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/categorie")
+@RequestMapping("/api")
 public class CategorieController {
 
     private final ICategorieService categorieService;
@@ -18,22 +18,22 @@ public class CategorieController {
         this.categorieService = categorieService;
     }
 
-    @GetMapping({"","/"})
+    @GetMapping("/categories")
     public List<Categorie> getCategories(){
         return categorieService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/category/{id}")
     public Categorie getCategory(@PathVariable Long id){
         return categorieService.findById(id);
     }
 
-    @PostMapping({"","/"})
+    @PostMapping("/category/save")
     public Categorie addCategory(@RequestBody Categorie category){
         return categorieService.save(category);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/category/{id}")
     public void deleteCategory(@PathVariable Long id){
         categorieService.deleteById(id);
     }

@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/Commande")
+@RequestMapping("/api")
 public class CommandeController {
     private final ICommandeService commandeService;
 
@@ -20,29 +20,28 @@ public class CommandeController {
         this.commandeService = commandeService;
     }
 
-    @GetMapping({"","/"})
-    public List<Commande> getCommande(){
+    @GetMapping("/commandes")
+    public List<Commande> getCommandes(){
         return commandeService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/commande/{id}")
     public Commande getCommande(@PathVariable Long id){
         return commandeService.findById(id);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/commande/{id}")
     public String deleteCommande(@PathVariable Long id){
         commandeService.deleteById(id);
         return String.format("Commande with Id : %s is deleted! ", id);
     }
-    @PostMapping({"","/"})
+    @PostMapping("/commande/save")
     public Commande createCommande(@RequestBody Commande commande){
         Date datenow = new Date();
-        datenow.getTime();
         commande.setDateCreated(datenow);
         return commandeService.saveCommande(commande);
     }
-    @PutMapping("/{id}")
+    @PutMapping("/commande/{id}")
     public Commande updateCommande(@PathVariable Long id, @RequestBody Commande commande){
         return  commandeService.updateCommandeStatus(commande, id);
     }

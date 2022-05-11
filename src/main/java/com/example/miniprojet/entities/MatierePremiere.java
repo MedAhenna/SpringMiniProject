@@ -25,9 +25,7 @@ public class MatierePremiere {
     private String description;
 
     @ManyToOne
-    @JsonIgnore
     private Origine origine;
-
 
     @ManyToMany
     List<Produit> produitList=new ArrayList<Produit>();

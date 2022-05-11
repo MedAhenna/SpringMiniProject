@@ -52,14 +52,10 @@ public class ProduitService implements IProduitService {
             Categorie category = categorieService.findById(produit.getCategorieID());
             produit.setCategory(category);
         }
-
-
         if(!isNullOrEmpty.check(produit.getCooperativeID())){
             Cooperative cooperative = cooperativeService.findById(produit.getCooperativeID());
             produit.setCooperative(cooperative);
         }
-
-
         return produitRepository.save(produit);
     }
 
@@ -74,10 +70,10 @@ public class ProduitService implements IProduitService {
         Produit existProduct = produitRepository.findById(Id).orElseThrow(
                 ()-> new ResourceNotFoundException("Product","Id",Id)
         );
-        existProduct.setNom(isNullOrEmpty.check(produit.getNom()) ? produit.getNom() : existProduct.getNom());
-        existProduct.setDescription(isNullOrEmpty.check(produit.getDescription()) ? produit.getDescription() : existProduct.getDescription());
-        existProduct.setMin_order(isNullOrEmpty.check(produit.getMin_order()) ? produit.getMin_order() : existProduct.getMin_order());
-        existProduct.setQty_dispo(isNullOrEmpty.check(produit.getQty_dispo()) ? produit.getQty_dispo() : existProduct.getQty_dispo());
+        existProduct.setNom(!isNullOrEmpty.check(produit.getNom()) ? produit.getNom() : existProduct.getNom());
+        existProduct.setDescription(!isNullOrEmpty.check(produit.getDescription()) ? produit.getDescription() : existProduct.getDescription());
+        existProduct.setMin_order(!isNullOrEmpty.check(produit.getMin_order()) ? produit.getMin_order() : existProduct.getMin_order());
+        existProduct.setQty_dispo(!isNullOrEmpty.check(produit.getQty_dispo()) ? produit.getQty_dispo() : existProduct.getQty_dispo());
 
         produitRepository.save(existProduct);
         return existProduct;
